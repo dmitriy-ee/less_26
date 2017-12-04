@@ -60,6 +60,17 @@ post '/visit' do
 	# 	end
 	# end
 
+	@db.execute 'INSERT INTO 
+				Users
+				(
+				username,
+				phone,
+				datestamp,
+				barber
+				)
+				VALUES
+				(?,?,?,?)', [@username, @phone, @datetime, @bb_bitch] 
+
 	erb "Information recive!\n 
 	Username: #{@username}\n 
 	Phone: #{@phone}\n 
