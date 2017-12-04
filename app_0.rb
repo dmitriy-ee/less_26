@@ -1,6 +1,20 @@
 require 'rubygems'
 require 'sinatra'
 require 'sinatra/reloader'
+require 'sqlite3'
+
+configure do
+	@db = SQLite3::Database.new _custom_database.db
+	@db.execute 'CREATE TABLE IF NOT EXISTS
+		"Users"
+		(
+		 "id" INTEGER RIMARY KEY AUTOINCREMENT
+		,"username" TEXT
+		,"phone" TEXT
+		,"datestamp" TEXT
+		,"barber" TEXT
+		)'
+end
 
 get '/' do
 	@error = 'Something wrong!!!'
