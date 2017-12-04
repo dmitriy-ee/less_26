@@ -1,0 +1,40 @@
+<html>
+<head> Welcome to record </head>
+
+<body>
+<p> On this page you can recording to us, in BARBERSHIT :) </p>
+
+<form action = "visit" method ="POST" role = "form">
+	<div class="form-group">
+		<label> Enter you name: </label>
+		<input name="username" type="text" class="form-control" placeholder="You name" value = "<%= @username %>">
+	</div>
+
+	<div class="form-group">
+		<label> Enter you phone: </label>
+		<input name="phone" type="text" class="form-control" placeholder="You phone" value = "<%= @phone%>" >
+	</div> 
+
+	<div class="form-group">
+		<label> When do you wait: </label>
+		<input name="datetime" type="text" class="form-control" placeholder="Enter datetime" value = "<%=@datetime%>">
+	</div>
+
+	<div class="form-group">
+		<label> Barberbitch: </label>
+		<select name="bb_bitch" class="form-control">
+	      <option>#1_Barberbitch_1</option>
+	      <option>#2_Barberbitch_2</option>
+	      <option>#3_Barberbitch_3</option>
+	      <option>#4_Barberbitch_4</option>
+	      <option>#5_Barberbitch_5</option>
+	    </select>
+	</div>	
+
+<button type="submit" class="btn btn-primary">Recording</button>
+
+</form>
+
+</body>
+
+</html>
