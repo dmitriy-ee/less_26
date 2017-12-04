@@ -8,11 +8,11 @@ configure do
 	@db.execute 'CREATE TABLE IF NOT EXISTS
 		"Users"
 		(
-		 "id" INTEGER RIMARY KEY AUTOINCREMENT
-		,"username" TEXT
-		,"phone" TEXT
-		,"datestamp" TEXT
-		,"barber" TEXT
+		"id" INTEGER PRIMARY KEY AUTOINCREMENT,
+		"username" TEXT,
+		"phone" TEXT,
+		"datestamp" TEXT,
+		"barber" TEXT
 		)'
 end
 
