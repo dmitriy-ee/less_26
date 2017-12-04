@@ -4,7 +4,7 @@ require 'sinatra/reloader'
 require 'sqlite3'
 
 configure do
-	@db = SQLite3::Database.new _custom_database.db
+	@db = SQLite3::Database.new 'custom_database.db'
 	@db.execute 'CREATE TABLE IF NOT EXISTS
 		"Users"
 		(
