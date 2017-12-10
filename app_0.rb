@@ -21,6 +21,11 @@ def get_db
 	return db
 end
 
+before do
+	db = get_db
+	@res_barber = db.execute 'SELECT * FROM Barbers ORDER BY Id'
+end 
+
 configure do
 	db = get_db
 	db.execute 'CREATE TABLE IF NOT EXISTS

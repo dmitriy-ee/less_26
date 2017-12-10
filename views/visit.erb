@@ -23,11 +23,9 @@
 	<div class="form-group">
 		<label> Barberbitch: </label>
 		<select name="barber" class="form-control">
-	      <option <%= @barber == 'Barberbitch_1' ? 'selected' : '' %>>Barberbitch_1</option>
-	      <option <%= @barber == 'Barberbitch_2' ? 'selected' : '' %>>Barberbitch_2</option>
-	      <option <%= @barber == 'Barberbitch_3' ? 'selected' : '' %>>Barberbitch_3</option>
-	      <option <%= @barber == 'Barberbitch_4' ? 'selected' : '' %>>Barberbitch_4</option>
-	      <option <%= @barber == 'Barberbitch_5' ? 'selected' : '' %>>Barberbitch_5</option>
+		  <% @res_barber.each do |row| %>
+		  <option <%= @barber == row['name'] ? 'selected' : '' %>><%= row['name'] %></option>
+		  <% end %>
 	    </select>
 	</div>	
 
