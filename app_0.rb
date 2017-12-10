@@ -18,6 +18,13 @@ configure do
 		"datestamp" TEXT,
 		"barber" TEXT
 		)'
+
+	db.execute 'CREATE TABLE IF NOT EXISTS
+		"Barbers"
+		(
+		"id" INTEGER PRIMARY KEY AUTOINCREMENT,
+		"name" TEXT
+		)'	
 end
 
 get '/' do
