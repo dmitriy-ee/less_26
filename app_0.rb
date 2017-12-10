@@ -103,11 +103,19 @@ post '/visit' do
 				VALUES
 				(?,?,?,?)', [@username, @phone, @datetime, @barber] 
 
-	erb "Information recive!\n 
-	Username: #{@username}\n 
-	Phone: #{@phone}\n 
-	Datetime: #{@datetime}\n 
-	Barberbitch: #{@barber}\n"
+	erb "<style>
+	h2 {
+    text-align: center;
+	}
+	h5 {
+    text-align: left;
+	}
+	</style>
+	<h2><p>Information recive!</p></h2> 
+	</h5><p>Username: #{@username}</p></h5>
+	</h5><p>Phone: #{@phone}</p></h5>
+	</h5><p>Datetime: #{@datetime}</p></h5>
+	</h5><p>Barberbitch: #{@barber}</p></h5>"
 end
 
 get '/contact' do
