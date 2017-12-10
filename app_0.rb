@@ -3,8 +3,22 @@ require 'sinatra'
 require 'sinatra/reloader'
 require 'sqlite3'
 
+def is_barber_exists? db, name
+	(db.execute 'SELECT * FROM Barbers WHERE name=(?)', [name]).length > 0
+end
+
+def seed_db db, barbers
+	barbers.each do |barber|
+	if !is_barber_exists? db, barber
+		db.execute 'INSERT INTO Barbers (name) VALUES (?)', [barber]
+	end
+	end
+end
+
 def get_db
-	return SQLite3::Database.new 'custom_database.db'
+	db = SQLite3::Database.new 'custom_database.db'
+	db.results_as_hash = true
+	return db
 end
 
 configure do
@@ -24,7 +38,9 @@ configure do
 		(
 		"id" INTEGER PRIMARY KEY AUTOINCREMENT,
 		"name" TEXT
-		)'	
+		)'
+
+	seed_db db, ['Barberbitch_1', 'Barberbitch_2', 'Barberbitch_3', 'Barberbitch_4', 'Barberbitch_5']	
 end
 
 get '/' do
@@ -50,7 +66,7 @@ post '/visit' do
 	@username = params[:username]
 	@phone = params[:phone]
 	@datetime = params[:datetime]
-	@bb_bitch = params[:bb_bitch]
+	@barber = params[:barber]
 
 	hh =    {
 			:username => 'Please, enter your name',
@@ -80,33 +96,21 @@ post '/visit' do
 				barber
 				)
 				VALUES
-				(?,?,?,?)', [@username, @phone, @datetime, @bb_bitch] 
+				(?,?,?,?)', [@username, @phone, @datetime, @barber] 
 
 	erb "Information recive!\n 
 	Username: #{@username}\n 
 	Phone: #{@phone}\n 
 	Datetime: #{@datetime}\n 
-	Barberbitch: #{@bb_bitch}\n"
+	Barberbitch: #{@barber}\n"
 end
 
 get '/contact' do
-
+ 'contact...'
 end
 
 get '/showusers' do
 	db = get_db
-	db.results_as_hash = true
 	@res = db.execute 'SELECT * FROM Users ORDER BY Id' 
-	db.close
-	erb :showusers
-
-  	# db = get_db
-  	# db.results_as_hash = true
-  	# db.execute 'SELECT *
-  	# FROM Users' do |row|
-  	# print row ['username']
-  	# print "\t-\t"
-  	# puts row [datestamp]
-  	# puts '=============='
-  	# end
+	erb :showusers 
 end
